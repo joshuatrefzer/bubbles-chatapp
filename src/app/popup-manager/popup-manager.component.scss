@@ -1,0 +1,32 @@
+@import "../library.scss";
+
+#fullscreen {
+    @include position($pos: fixed);
+    background-color: rgba($color: #000000, $alpha: .4);
+    backdrop-filter: blur(5px);
+}
+
+.popup-content {
+    animation: slide-in 300ms ease-in-out;
+    height: fit-content;
+    @include pos-center();
+    z-index: 10;
+}
+
+.message-popup {
+    background-color: var(--color1);
+    border: 2px solid var(--color3);
+    @include center();
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translate(-50%, 100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}

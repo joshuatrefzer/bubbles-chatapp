@@ -1,0 +1,264 @@
+:root {
+    --transition: none;
+    --color1: #4d426d;
+    --color2: #5c4f82;
+    --color3: #efa985;
+    --color4: #3cc6b7;
+    --color5: #FFFFFF;
+    --color6: #adadad;
+}
+
+$error-color: rgb(255, 85, 85);
+$valid-color: rgba(112, 171, 148);
+$text-color: var(--color5);
+
+$card-padding: 15px;
+
+@mixin center($display: flex, $jc: center, $ai: center) {
+    display: $display;
+    justify-content: $jc;
+    align-items: $ai;
+}
+
+@mixin center-column($display: flex, $jc: flex-start, $ai: center, $fd: column) {
+    display: $display;
+    justify-content: $jc;
+    align-items: $ai;
+    flex-direction: $fd;
+}
+
+@mixin d-flex($display: flex, $jc: center, $ai: center, $fd: row, $g: 0) {
+    display: $display;
+    justify-content: $jc;
+    align-items: $ai;
+    flex-direction: $fd;
+    gap: $g;
+}
+
+@mixin pos-center($pos: fixed) {
+    position: $pos;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin position($pos: absolute, $top: 0, $bottom: 0, $left: 0, $right: 0) {
+    position: $pos;
+    top: $top;
+    bottom: $bottom;
+    left: $left;
+    right: $right;
+}
+
+@mixin full-width($padding: 0px, $margin: 0px, $height: 50px) {
+    width: calc(100% - (2 * $padding) - (2 * $margin));
+    height: $height;
+    padding: $padding;
+    margin: $margin;
+}
+
+@mixin img-size($size: 50px) {
+    width: $size;
+    max-width: $size;
+    min-width: $size;
+    height: $size;
+    min-height: $size;
+    max-height: $size;
+}
+
+.wrapper {
+    @include position($pos: fixed);
+    padding: $card-padding;
+}
+
+.card {
+    background-color: var(--color2);
+    padding: $card-padding;
+    @extend .border-radius;
+}
+
+.button {
+    border: 0;
+    border-radius: 7px;
+    padding: 10px 20px;
+    @extend .hover;
+}
+
+.button1 {
+    @extend .button;
+    background-color: var(--color4);
+    border: 2px solid var(--color4);
+    color: white;
+}
+
+.button2 {
+    @extend .button;
+    background-color: inherit;
+    border: 2px solid $error-color;
+    color: $error-color;
+}
+
+.button3 {
+    font-size: 10px;
+    padding: 8px;
+    border-radius: 25px;
+    background-color: inherit;
+    color: var(--color5);
+    border: 1px solid var(--color5);
+    cursor: pointer;
+
+    &:hover {
+        color: var(--color5);
+        border: 1px solid var(--color5);
+    }
+}
+
+.button-wrapper {
+    width: 100%;
+    @include d-flex($jc: flex-end, $g: 15px);
+}
+
+.border-radius {
+    border-radius: 10px;
+}
+
+.large-font {
+    font-size: 30px;
+}
+
+.small-font {
+    font-size: 12px;
+}
+
+.row {
+    width: 100%;
+    @include center($jc: center);
+}
+
+.white-space {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.img-button {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    padding: 3px;
+    background-color: var(--color2);
+    @include center();
+    @extend .hover;
+}
+
+.hover:hover {
+    filter: brightness(.9); //bessere lösung finden ohne twitch
+    cursor: pointer;
+}
+
+.disabled {
+    filter: brightness(.6) !important;
+    cursor: not-allowed !important;
+}
+
+.input {
+    background-color: var(--color1);
+    border: 0;
+    outline: 0;
+    padding: $card-padding;
+    @extend .border-radius;
+}
+
+.header {
+    @include d-flex($jc: space-between);
+    width: 100%;
+
+    p {
+        @extend .large-font
+    }
+}
+
+.online-wrapper {
+    position: relative;
+    @include d-flex();
+
+    .status {
+        height: 25%;
+        width: 25%;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        // border: 2px solid transparent;
+    }
+
+    .online {
+        background-color: $valid-color;
+        @extend .status;
+    }
+
+    .offline {
+        background-color: $error-color;
+        @extend .status;
+    }
+}
+
+img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+app-edit-document,
+app-add-reaction,
+app-delete,
+app-heart,
+app-like,
+app-rocket,
+app-color-picker,
+app-reply,
+app-add-member,
+app-profile,
+app-bubble,
+app-attachment {
+    @include center();
+}
+
+.highlight {
+    .message {
+        animation: highlighted 3000ms ease-in-out;
+    }
+}
+
+@keyframes highlighted {
+    30% {
+        background-color: var(--color4);
+    }
+
+    70% {
+        background-color: var(--color4);
+    }
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--color4);
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.hide {
+    transform: translateY(300%);
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateY(-200%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}

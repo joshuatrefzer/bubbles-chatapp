@@ -1,0 +1,42 @@
+<div class="profile-wrapper">
+    <div class="header">
+        <p>Profile</p>
+        <app-close class="img-button" (click)="mainService.closePopups()"></app-close>
+    </div>
+
+    <div class="picture-wrapper">
+        <div class="file-picker-wrapper">
+            <app-file-picker (newPicture)="uploadImg($event)" *ngIf="user?.id == authService.currentUser.id"></app-file-picker>
+            <img src="{{ channelService.getImg(user!.picture) }}">
+        </div>
+    </div>
+
+    <div class="details">
+
+        <p class="username">{{ user?.username }}</p>
+
+        <div class="online-status">
+            <div [ngClass]="{'online-circle': user?.is_online, 'offline-circle': !user?.is_online }"
+                class="online-circle"></div>
+            <p *ngIf="user?.is_online">active</p>
+            <p *ngIf="!user?.is_online">inactive</p>
+        </div>
+
+        <div class="email-adress">
+            <div class="upper">
+                <app-mail></app-mail>
+                <p>E-Mail Adress</p>
+            </div>
+            <a href="{{ user?.email }}" class="e-mail">
+                {{ user?.email }}
+            </a>
+        </div>
+    </div>
+    <div class="button-wrapper">
+        @if (user?.id === authService.currentUser.id) {
+        <button class="button1" (click)="logout()">Logout</button>
+        } @else {
+        <button (click)="sendDirectMessage()" class="button1">Send Message</button>
+        }
+    </div>
+</div>

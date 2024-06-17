@@ -1,0 +1,37 @@
+@import "../library.scss";
+
+.show-members-wrapper {
+    @include d-flex($fd: column, $g: 15px, $ai: flex-start);
+    @extend .card;
+    width: 300px;
+
+    .display-members {
+        @include d-flex($fd: column, $g: 15px, $ai: flex-start, $jc: flex-start);
+        max-height: 250px;
+        overflow-y: scroll;
+        width: 100%;
+        padding: 0 10px;
+
+        .member-wrapper {
+            @include d-flex($g: 15px, $jc: flex-start);
+            max-width: 100%;
+
+            img {
+                @include img-size(40px);
+            }
+
+            p {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .add-members-wrapper {
+        @include d-flex();
+        width: 100%;
+
+        .button1 {
+            @include d-flex($g: 10px);
+        }
+    }
+}

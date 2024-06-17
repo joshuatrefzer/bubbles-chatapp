@@ -1,0 +1,61 @@
+<div class="channel-popup-wrapper" [ngSwitch]="addMembers">
+    <div class="header">
+        <p *ngSwitchCase="false">Create a channel</p>
+        <p *ngSwitchCase="true">Add members</p>
+        <app-close class="img-button" (click)="mainService.closePopups()" src="assets/img/close_icon.svg"></app-close>
+    </div>
+
+    <div class="content" *ngSwitchCase="false">
+        <p>Channels serve your team for communication. Ideally, they should be topic-specific, for example, #marketing.
+        </p>
+
+        <div class="channel-picture-wrapper">
+            <div class="input-wrapper">
+                <p>Channel Name</p>
+                <input maxlength="100" tabindex="0" autofocus type="text" class="input" required placeholder="e.g. Development Team"
+                    [(ngModel)]="newChannel.name">
+            </div>
+
+            <div class="file-picker-wrapper">
+                <app-file-picker name="file-picker" (newPicture)="handleImg($event)"></app-file-picker>
+                <img src="{{ newChannel.picture }}">
+            </div>
+        </div>
+
+        <div class="input-wrapper">
+            <p>Description</p>
+            <input maxlength="100" tabindex="0" type="text" class="input" placeholder="Your description" [(ngModel)]="newChannel.description">
+        </div>
+    </div>
+
+    <div class="content" *ngSwitchCase="true">
+        <label>
+            <input type="radio" name="radio" [value]="true" [(ngModel)]="addAllMembers">
+            Add all members of chat app
+        </label>
+        <label>
+            <input type="radio" name="radio" [value]="false" [(ngModel)]="addAllMembers">
+            Add certain members
+        </label>
+        <app-search *ngIf="!addAllMembers" [searchType]="'user-search'" [userSelection]="channelMembers"
+            (selectedUsers)="handleSelectedUsers($event)"></app-search>
+        <div class="selected-users">
+            @for (user of channelMembers; track $index) {
+            <div class="selected-user">
+                <img src="{{channelService.getImg(user.picture)}}">
+                <p>{{user.username}}</p>
+                <img class="img-button" src="assets/img/close_icon.svg" (click)="removeMember(user)">
+            </div>
+            }
+        </div>
+    </div>
+
+    <div class="button-wrapper">
+        <button class="button1" (click)="addMembers = true" *ngSwitchCase="false" [disabled]="!newChannel.name"
+            [class.disabled]="!newChannel.name">Next</button>
+
+        <button class="button1" *ngSwitchCase="true" (click)="addMemberToChannel()"
+            [class.disabled]="!(addAllMembers || (!addAllMembers && channelMembers.length > 0))"
+            [disabled]="!(addAllMembers || (!addAllMembers && channelMembers.length > 0))">Create</button>
+    </div>
+</div>

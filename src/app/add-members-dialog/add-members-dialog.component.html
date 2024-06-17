@@ -1,0 +1,25 @@
+<div class="add-members-wrapper">
+    <div class="header">
+        <p>Add members</p>
+        <app-close class="img-button" (click)="mainService.closePopups()"> </app-close>
+        <!-- <img src="assets/img/close_icon.svg" (click)="mainService.closePopups()"> -->
+    </div>
+    <p>{{currentChannel.name}}</p>
+    <app-search [searchType]="'user-search'" [userSelection]="channelMembers"
+        (selectedUsers)="handleSelectedUsers($event)"></app-search>
+    <div class="selected-users">
+        @for (user of channelMembers; track $index) {
+        <div class="selected-user">
+            <img src="{{channelService.getImg(user.picture)}}">
+            <p>{{user.username}}</p>
+
+            <app-close [removeMember]="true" class="img-button" (click)="removeMember(user)"></app-close>
+        </div>
+        } @empty {
+        <p>No users selected</p>
+        }
+    </div>
+    <div class="button-wrapper">
+        <button class="button1" (click)="addMembers()">Save</button>
+    </div>
+</div>

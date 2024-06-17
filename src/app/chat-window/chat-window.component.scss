@@ -1,0 +1,43 @@
+@import '../library.scss';
+
+.chat-wrapper {
+    @include d-flex($jc: space-between, $ai: unset, $fd: column);
+    @extend .card;
+    height: 100%;
+    padding-right: 5px;
+}
+
+.chat-messages-wrapper {
+    @include d-flex($jc: flex-start, $fd: column);
+    gap: 5px;
+    height: 100%;
+    position: relative;
+    overflow-y: scroll;
+    padding: 5px 5px 25px 0;
+}
+
+.no-msg-to-display {
+    margin: auto;
+    text-align: center;
+}
+
+app-grouped-messages {
+    width: 100%;
+}
+
+app-message-bar,
+app-search {
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+app-loader {
+    height: 100%;
+}
+
+.seperator {
+    @extend .small-font;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--color1);
+}

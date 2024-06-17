@@ -1,0 +1,41 @@
+<div class="wrapper">
+    <div class="bubbles">
+        <div class="bubble" *ngFor="let bubble of bubbles"></div>
+    </div>
+    <form class="card" [ngClass]="{'hide': hide}" [formGroup]="loginForm" (submit)="submit()">
+        <div class="row"><span class="large-font">LOGIN</span></div>
+
+        <div class="input-container">
+            <input maxlength="20" placeholder="username" type="username" formControlName="username"
+                [ngClass]="{'invalid': isInvalid('username'), 'valid': isValidInput('username') }">
+            <div class="error-container">
+                <div *ngIf="requiredErrors('username')" class="errors">username is required</div>
+            </div>
+        </div>
+
+        <div class="input-container">
+            <input maxlength="30" placeholder="set password" type="password" formControlName="password"
+                [ngClass]="{'invalid': isInvalid('password'), 'valid': isValidInput('password') }">
+            <div class="error-container">
+                <div *ngIf="requiredErrors('password')" class="errors">password is required</div>
+                <div *ngIf="minLengthError('password')" class="errors">your password must have a minimum of 8 characters
+                </div>
+            </div>
+        </div>
+
+        <div class="row small-font">
+            <button type="button" (click)="navigateTo('/forgotpassword')" class="button3">forgot password</button>
+            <button type="button" (click)="guestLogin()" class="button3">guest login</button>
+            <button type="button" (click)="navigateTo('/signup')" class="button3">create account</button>
+        </div>
+
+        <div class="row">
+            <button [ngClass]="{'valid-form-button': isFormValid()}" type="submit" class="button1">LOG IN</button>
+        </div>
+
+    </form>
+    <div class="links">
+        <a (click)="navigateTo('/imprint')">Imprint</a>
+        <a (click)="navigateTo('/privacypolicy')">Privacy Policy</a>
+    </div>
+</div>

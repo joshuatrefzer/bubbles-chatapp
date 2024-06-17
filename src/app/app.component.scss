@@ -1,0 +1,5 @@
+@import 'library.scss';
+
+app-loader {
+    @include position($pos: fixed);
+}

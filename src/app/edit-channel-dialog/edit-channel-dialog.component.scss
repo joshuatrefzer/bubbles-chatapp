@@ -1,0 +1,52 @@
+@import "../create-channel-dialog/create-channel-dialog.component.scss";
+@import "../library.scss";
+
+.channel-popup-wrapper {
+    @extend .card;
+    width: 400px;
+
+    @media(max-width: 430px) {
+        width: calc(100vw - 30px);
+    }
+}
+
+.content,
+.input {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+}
+
+.mini-header {
+    @include d-flex($jc: space-between);
+
+    span {
+        cursor: pointer;
+        font-size: 15px;
+        color: var(--color4);
+    }
+}
+
+.mini-content {
+    .card {
+        margin-top: 5px;
+        background-color: var(--color1);
+        @include d-flex($jc: space-between);
+        padding: 10px 15px;
+
+        span {
+            font-size: 20px;
+        }
+
+        .img-button {
+            background-color: var(--color1);
+        }
+    }
+}
+
+.button2 {
+    @media(max-width:365px) {
+        content: 'Leave' !important;
+    }
+}

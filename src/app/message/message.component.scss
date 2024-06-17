@@ -1,0 +1,169 @@
+@import '../library.scss';
+
+.msg {
+    @include d-flex($fd: column, $ai: flex-start, $g: 5px);
+    margin: 2px 0;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 35px;
+    z-index: 1;
+
+    .message {
+        background-color: var(--color1);
+        width: fit-content;
+        position: relative;
+
+        .message-content {
+            word-break: break-word;
+            width: 100%;
+
+        }
+
+        &:hover {
+            .reaction {
+                top: -35px;
+                opacity: 1;
+                z-index: 2;
+            }
+
+            .quick-thread {
+                opacity: 1;
+                right: -35px;
+                z-index: 2;
+            }
+
+            .reactions-wrapper p {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .reaction {
+        opacity: 0;
+        border-radius: 25px;
+        background-color: var(--color2);
+        border: 1px solid var(--color5);
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: 225ms all;
+        z-index: -1;
+        @include d-flex();
+
+        .img-wrapper {
+            @extend .img-button;
+            @include d-flex();
+            padding: 5px;
+
+            img {
+                @include img-size(20px);
+            }
+        }
+    }
+
+    .message:hover::after {
+        content: '';
+        position: absolute;
+        inset: -0;
+        right: -35px;
+        top: -3px;
+        z-index: 1;
+    }
+}
+
+.my-msg {
+    align-items: flex-end;
+    padding-left: 35px;
+    padding-right: 0;
+
+    .message {
+        background-color: var(--color3);
+        width: fit-content;
+
+        &:hover {
+            .reaction {
+                left: unset;
+            }
+
+            .quick-thread {
+                left: -35px;
+            }
+        }
+    }
+
+    .reaction {
+        right: 0;
+        left: unset;
+    }
+
+    .quick-thread {
+        right: unset !important;
+        left: 0;
+    }
+
+    .quick-thread-img {
+        transform: translate(1px, -1px) rotateY(180deg);
+    }
+
+    .show-quick-thread {
+        left: -35px;
+    }
+
+    .message:hover::after {
+        inset: 0;
+        left: -35px;
+        top: -3px;
+    }
+}
+
+.quick-thread {
+    @include d-flex();
+    @extend .hover;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 5px;
+    background-color: var(--color1);
+    border-radius: 50%;
+    transition: 225ms all;
+    z-index: -1;
+
+    img {
+        transform: translate(-1px, -1px);
+    }
+}
+
+.show-quick-thread {
+    opacity: 1;
+    right: -35px;
+    z-index: 2;
+}
+
+.attachment-wrapper {
+    @include d-flex();
+
+    img {
+        max-width: 100%;
+        @extend .border-radius
+    }
+}
+
+.message {
+    @include d-flex($fd: column, $ai: flex-end);
+    padding: 5px;
+    @extend .border-radius;
+
+    p {
+        padding: 5px;
+    }
+}
+
+app-reactions {
+    width: 100%;
+}
+
+.padding-top{
+    padding-top: 5px;
+}

@@ -1,0 +1,30 @@
+@import '../library.scss';
+
+.reactions-wrapper {
+    @include d-flex($jc: flex-start, $g: 5px);
+    flex-wrap: wrap;
+    width: 100%;
+
+    .reaction-preview {
+        @include d-flex($g: 2px);
+        @extend .hover;
+        cursor: pointer;
+        background-color: white;
+        border-radius: 12px;
+        padding: 2px 5px;
+
+        &:hover{
+            transform: rotate(5deg);
+        }
+    }
+
+    p {
+        // color: var(--color6) !important;
+        color: black !important;
+    }
+}
+
+.my-reaction {
+    // background-color: #007bff !important;
+    border: 1px solid grey;
+}

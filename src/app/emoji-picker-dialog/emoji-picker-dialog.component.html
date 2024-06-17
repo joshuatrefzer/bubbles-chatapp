@@ -1,0 +1,18 @@
+<!-- https://emoji-api.com/ -->
+<div class="emoji-wrapper" (click)="stopProp($event)">
+  <input maxlength="30" placeholder="search your emoji" [(ngModel)]="searchValue" (keyup)="search()" class="input-for-emoji"
+    type="text">
+  <div class="emoji-display">
+    <span class="emoji" *ngFor="let emoji of emojiList" (click)="showInInput(emoji)">{{ emoji['character'] }}</span>
+  </div>
+  <div class="menu">
+    @for (category of mainService.categoryList; track $index) {
+    @if (category.slug != 'component') {
+    <div class="menu-point" [class.currentCat]="category.slug === currentCategory"
+      (click)="showCategory(category.slug)">
+      <img src="{{categoryIcons[$index]}}">
+    </div>
+    }
+    }
+  </div>
+</div>

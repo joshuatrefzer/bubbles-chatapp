@@ -1,0 +1,8 @@
+<div class="reactions-wrapper">
+    @for (reaction of allReactions; track $index) {
+        <div class="reaction-preview" [class.my-reaction]="myReaction(reaction.reaction)" (click)="quickReaction(reaction.reaction)">
+            <p>{{reaction.reaction}}</p>
+            <p *ngIf="reaction.count > 1">{{reaction.count}}</p>
+        </div>
+        }
+</div>

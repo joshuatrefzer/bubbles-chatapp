@@ -1,0 +1,16 @@
+<div class="popup-wrapper" [class.error]="error">
+    @if (error) {
+    <div class="icon-wrapper">
+        <img src="assets/img/close_icon_red.svg" alt="">
+    </div>
+    <p>Error</p>
+    <span>{{ mainService.popupMessage }}</span>
+    } @else {
+    <!-- <div class="icon-wrapper">
+        <img src="assets/img/check_icon_green.svg" alt="">
+    </div> -->
+    <p>Login successfull</p>
+    <span>{{ mainService.popupMessage }}</span>
+    }
+    <button (click)="mainService.closePopups()">Continue</button>
+</div>

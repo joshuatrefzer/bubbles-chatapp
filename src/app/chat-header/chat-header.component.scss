@@ -1,0 +1,69 @@
+@import '../library.scss';
+
+.header-wrapper {
+    @include d-flex($jc: space-between, $g: 15px, $ai: flex-start);
+    padding-right: 10px;
+    min-height: 50px;
+    max-width: 100%;
+}
+
+.chat-name-wrapper {
+    @include d-flex($g: 15px);
+    @extend .hover;
+    background-color: var(--color1);
+    border-radius: 25px;
+    padding: 5px;
+    padding-right: 15px;
+    max-width: 50%;
+
+    img {
+        height: 35px;
+        width: 35px;
+    }
+
+    p{
+        @extend .white-space;
+        max-width: 100%;
+    }
+}
+
+.group-members-wrapper {
+    @include d-flex($g: 15px);
+
+    .group-members {
+        @include d-flex($g: 20px);
+        @extend .hover;
+        background-color: var(--color1);
+        padding: 5px 15px 5px 5px;
+        border-radius: 22px;
+
+        .member-pics {
+            @include d-flex();
+
+            img {
+                @include img-size($size: 35px);
+                margin-right: -10px;
+            }
+        }
+    }
+
+    .add-member {
+        background-color: var(--color1);
+        @extend .img-button;
+        @include d-flex;
+        padding: 7px;
+        height: 43px;
+        width: 43px;
+
+        img {
+            @include img-size($size: 30px);
+        }
+    }
+}
+
+.close-thread {
+    @include d-flex();
+    app-close {
+        @include center();
+    }
+}

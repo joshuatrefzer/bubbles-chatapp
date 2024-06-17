@@ -1,0 +1,31 @@
+<div class="chat-wrapper">
+    <div class="header">
+        <p>Thread</p>
+        <app-close class="img-button" (click)="closeThread()"></app-close>
+    </div>
+    <div class="chat-messages-wrapper" #chatWrapper>
+        @if (threadToDisplay){
+        <div class="thread-message">
+            <div *ngIf="getImg(threadToDisplay.attachment)" class="attachment-wrapper">
+                <img src="{{getImg(threadToDisplay.attachment)}}" alt="">
+            </div>
+            <p>{{this.threadToDisplay.content}}</p>
+        </div>
+        @for (groupedMessages of messageService.groupMsgByAuthor(threadToDisplay.id, true); track $index) {
+        @if (channelService.isSeperator(groupedMessages)) {
+        <div class="seperator">{{channelService.createSeperator(groupedMessages)}}</div>
+        } @else {
+        <app-grouped-messages
+            [groupedMessages]="channelService.checkGroupedMsg(groupedMessages)"></app-grouped-messages>
+        }
+        } @empty {
+        <span class="no-msg-to-display">No messages here</span>
+        }
+        } @else {
+        <span class="no-msg-to-display">Please select a channel to display messages</span>
+        }
+    </div>
+
+    <app-message-bar (messageContent)="channelService.sendMsg($event, true)"
+        [disabled]="threadToDisplay === undefined"></app-message-bar>
+</div>

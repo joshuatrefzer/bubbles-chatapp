@@ -1,0 +1,46 @@
+<div class="channel-popup-wrapper">
+    <div class="header">
+        <p>Channel details</p>
+        <app-close class="img-button" (click)="mainService.closePopups()"></app-close>
+    </div>
+
+    <div class="content">
+        <div class="channel-picture-wrapper">
+            <div class="input-wrapper">
+                <div class="mini-header">
+                    <p>Channel name</p>
+                </div>
+
+                <div class="mini-content">
+                    <div class="card">
+                        <input maxlength="100" autofocus tabindex="0" type="text" class="input" placeholder="e.g. Development Team"
+                            [(ngModel)]="updatedChannel.name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="file-picker-wrapper">
+                <app-file-picker name="file-picker" (newPicture)="handleImg($event)"></app-file-picker>
+                <img src="{{ updatedChannel.picture }}">
+            </div>
+        </div>
+
+        <div class="input-wrapper">
+            <div class="mini-header">
+                <p>Description</p>
+            </div>
+
+            <div class="mini-content">
+                <div class="card">
+                    <input maxlength="100" tabindex="0" type="text" class="input" placeholder="Your description"
+                        [(ngModel)]="updatedChannel.description">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-wrapper">
+        <button class="button2" (click)="leaveChannel()">Leave channel</button>
+        <button class="button1" (click)="patchChannel()">Save changes</button>
+    </div>
+</div>

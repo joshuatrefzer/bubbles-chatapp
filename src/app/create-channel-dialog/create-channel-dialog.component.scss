@@ -1,0 +1,95 @@
+@import "../library.scss";
+@import "../add-members-dialog/add-members-dialog.component.scss";
+
+.channel-popup-wrapper {
+    @extend .card;
+    @include d-flex($fd: column, $ai: flex-start, $g: 15px);
+    width: 630px;
+
+    @media(max-width: 660px) {
+        width: calc(100vw - 30px);
+    }
+}
+
+.content {
+    @include d-flex($fd: column, $ai: flex-start, $g: 15px);
+    width: 100%;
+}
+
+.channel-picture-wrapper {
+    @include d-flex($ai: flex-end, $jc: space-between, $g: 15px);
+    width: 100%;
+
+    .file-picker-wrapper {
+        position: relative;
+        @include d-flex();
+
+        img {
+            @include img-size($size: 90px);
+        }
+
+        app-file-picker {
+            opacity: 0;
+            @include pos-center($pos: absolute);
+            height: 100%;
+            width: 100%;
+        }
+
+        &:hover {
+            app-file-picker {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.input-wrapper {
+    width: 100%;
+
+    p {
+        font-size: 20px;
+    }
+}
+
+.input {
+    margin-top: 10px;
+    width: 100%;
+}
+
+label {
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+
+    input {
+        appearance: none;
+        // background-color: #fff;
+        margin: 0;
+        font: inherit;
+        color: currentColor;
+        width: 1.15em;
+        height: 1.15em;
+        border: 0.15em solid $text-color;
+        border-radius: 50%;
+        display: grid;
+        place-content: center;
+    }
+
+    input::before {
+        content: "";
+        width: 0.65em;
+        height: 0.65em;
+        border-radius: 50%;
+        transform: scale(0);
+        transition: 120ms transform ease-in-out;
+        box-shadow: inset 1em 1em var(--color4);
+    }
+
+    input:checked::before {
+        transform: scale(1);
+    }
+}
+
+.circle {
+    border-radius: 50%;
+}

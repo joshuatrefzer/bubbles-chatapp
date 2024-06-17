@@ -1,0 +1,78 @@
+@import '../library.scss';
+
+@font-face {
+    font-family: 'bitcheese';
+    src: url('../../assets/fonts/bitcheese/Bitcheese.ttf');
+}
+
+.header-wrapper {
+    @include d-flex($jc: space-between, $g: 15px);
+    padding-bottom: 15px;
+
+    .card {
+        padding: 10px;
+    }
+}
+
+.left-side,
+.right-side {
+    @include d-flex($g: 15px);
+}
+
+.header-button {
+    @extend .card;
+    @include center();
+    @extend .hover;
+    padding: 0 !important;
+    height: 40px;
+    min-width: 40px; // avoids twitch of search bar
+    // margin-right: 15px;
+
+    app-side-menu-button {
+        @include center();
+    }
+}
+
+.cursor-default {
+    cursor: default !important;
+}
+
+.logo-wrapper {
+    @include d-flex($g: 5px);
+
+    p {
+        width: 72px;
+        font-size: 22px;
+        font-family: 'bitcheese', 'Roboto', sans-serif !important;
+
+        @media(max-width: 390px) {
+            display: none;
+        }
+    }
+}
+
+.chat-name {
+    @extend .card;
+    @extend .hover;
+    @include d-flex();
+    height: 40px;
+    padding: 8px !important;
+}
+
+app-search {
+    width: 100%;
+}
+
+.give-margin {
+    @media(max-width: 565px) {
+        margin-left: -205px;
+        transition: 500ms;
+    }
+}
+
+.remove-margin {
+    @media(max-width: 565px) {
+        margin-left: 0;
+        transition: 500ms;
+    }
+}

@@ -1,0 +1,84 @@
+@import "../library.scss";
+
+.emoji-wrapper {
+    @include pos-center();
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    // max-width: 348px;
+    width: 347px;
+    background-color: rgb(231, 231, 231);
+    z-index: 9;
+    @extend .border-radius;
+
+    input {
+        @extend .border-radius;
+        border: 0;
+        padding: 10px;
+        outline: none;
+        color: black;
+        margin: 5px;
+    }
+
+    @media(max-width: 400px) {
+        width: 300px;
+        .emoji-display{
+            gap: 6px;
+        }
+
+        .menu-point {
+            padding: 0 !important;
+        }
+    }
+}
+
+.emoji-display {
+    @include d-flex($jc: flex-start, $ai: flex-start, $g: 7px);
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: fit-content;
+    padding: 5px;
+}
+
+.emoji-display::-webkit-scrollbar {
+    display: none;
+}
+
+.emoji {
+    scale: 1.8;
+    margin: 8px;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+}
+
+.menu {
+    @include position($top: unset);
+    @include d-flex($jc: space-around);
+    @extend .border-radius;
+    padding: 5px;
+    background-color: rgb(231, 231, 231);
+
+    .menu-point {
+        padding: 5px;
+        background-color: rgb(231, 231, 231);
+        @include d-flex();
+        @extend .hover;
+
+        &:hover {
+            @extend .border-radius;
+        }
+    }
+}
+
+.currentCat {
+    background-color: var(--color3) !important;
+    @extend .border-radius;
+
+    img {
+        filter: brightness(0%);
+    }
+}

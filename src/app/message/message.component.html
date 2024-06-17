@@ -1,0 +1,51 @@
+<div class="msg" id="{{message.id}}" [ngClass]="{'my-msg': myMessage}">
+
+    <div class="message">
+        @if (message.attachment) {
+            <div class="attachment-wrapper">
+                <img src="{{getImage()}}" alt="">
+            </div>
+        }
+        @if (editState) {
+        <app-message-bar [class.padding-top]="message.attachment" (messageContent)="editMessage($event)" [enableFilePicker]="false" [disabled]="false"></app-message-bar>
+        } @else {
+        <p class="message-content">{{message!.content}}</p>
+        }
+        @if (message.reactions.length > 0) {
+        <app-reactions (addQuickReaction)="addReaction($event)" [addedReaction]="addedReaction.asObservable()" [msgReactions]="this.message.reactions"
+            [myMessage]="myMessage"></app-reactions>
+        }
+
+        <div class="reaction">
+            <div class="img-wrapper" (click)="addReaction('👍🏼')">
+                <app-like></app-like>
+            </div>
+            <div class="img-wrapper" (click)="addReaction('♥')">
+                <app-heart></app-heart>
+            </div>
+            <div class="img-wrapper" (click)="addReaction('🚀')">
+                <app-rocket></app-rocket>
+            </div>
+            <div class="img-wrapper" (click)="openEmojiPicker()">
+                <app-add-reaction></app-add-reaction>
+            </div>
+            @if (myMessage) {
+            <div class="img-wrapper" (click)="toggleEditState()">
+                <app-edit-document></app-edit-document>
+            </div>
+            <div class="img-wrapper" (click)="channelService.deleteMessage(message)">
+                <app-delete></app-delete>
+            </div>
+            }
+        </div>
+
+        @if (sourceIsChannel()) {
+        <div class="quick-thread" [class.show-quick-thread]="thread()" (click)="messageService.openThread(message.id)">
+            <app-reply class="quick-thread-img"></app-reply>
+        </div>
+        }
+    </div>
+</div>
+
+<app-emoji-picker-dialog #picker *ngIf="showEmojiPicker"
+    (newEmoji)="addReaction(getCharater($event))"></app-emoji-picker-dialog>

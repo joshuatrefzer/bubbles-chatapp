@@ -1,0 +1,79 @@
+@import '../library.scss';
+
+.theme-picker {
+    @extend .card;
+    @include d-flex($jc: flex-start);
+    height: 40px;
+    overflow: auto;
+    padding: 0 10px;
+    width: fit-content;
+}
+
+.theme-picker::-webkit-scrollbar {
+    display: none;
+}
+
+.theme-picker fieldset {
+    padding: 0 !important;
+    border: 0;
+    display: flex;
+    gap: 15px;
+
+    label {
+        padding: 5px;
+        @include d-flex();
+        border-radius: 50%;
+    }
+}
+
+.theme-picker input[type="radio"] {
+    cursor: pointer;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    outline-offset: 2px;
+    outline: 2px solid var(--radio-color, currentColor);
+    background-color: var(--radio-color, currentColor);
+
+    &:checked {
+        background-color: var(--radio-color, currentColor);
+    }
+}
+
+input[type="radio"]#black {
+    --radio-color: #000000; // die dunklere hauptfarbe farbe hier
+}
+
+input[type="radio"]#blue {
+    --radio-color: #263250;
+}
+
+input[type="radio"]#red {
+    --radio-color: #602632;
+}
+
+input[type="radio"]#green {
+    --radio-color: #1e2717;
+}
+
+input[type="radio"]#light {
+    --radio-color: #bdbdbd;
+}
+
+.invisible {
+    opacity: 0;
+}
+
+.slide-in {
+    width: 205px;
+    opacity: 1;
+    transition: all 500ms;
+}
+
+.slide-out {
+    width: 0px;
+    opacity: 0;
+    padding: 0;
+    transition: all 500ms;
+}

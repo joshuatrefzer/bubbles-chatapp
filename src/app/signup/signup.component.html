@@ -1,0 +1,52 @@
+<div class="wrapper">
+    <div class="bubbles">
+        <div class="bubble" *ngFor="let bubble of bubbles"></div>
+    </div>
+    <form class="card" [ngClass]="{'hide': hide}" (submit)="submit()" [formGroup]="signUpForm">
+        <div class="row"><span class="large-font">SIGN UP</span></div>
+
+        <div class="input-container">
+            <input placeholder="username" maxlength="20" type="text" formControlName="username"
+                [ngClass]="{'invalid': isInvalid('username'), 'valid': isValidInput('username') }">
+
+            <div class="error-container">
+                <div *ngIf="requiredErrors('username')" class="errors">username is required</div>
+                <div *ngIf="minLengthError('username')" class="errors">username must have a minimum of 4 characters
+                </div>
+            </div>
+        </div>
+
+
+        <div class="input-container">
+            <input placeholder="e-mail" maxlength="20" type="email" formControlName="email"
+                [ngClass]="{'invalid': isInvalid('email'), 'valid': isValidInput('email') }">
+            <div class="error-container">
+                <div *ngIf="requiredErrors('email')" class="errors">email is required</div>
+                <div *ngIf="emailError('email')" class="errors">please use a valid email</div>
+            </div>
+        </div>
+
+
+
+        <div class="input-container">
+            <input maxlength="30" placeholder="set password" type="password" formControlName="password"
+                [ngClass]="{'invalid': isInvalid('password'), 'valid': isValidInput('password') }">
+            <div class="error-container">
+                <div *ngIf="requiredErrors('password')" class="errors">password is required</div>
+                <div *ngIf="minLengthError('password')" class="errors">your password must have a minimum of 8 characters
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row small-font">
+
+            <button type="button" (click)="navigateTo('/login')" class="button3">to login</button>
+
+        </div>
+        <div class="row">
+            <button type="submit" [ngClass]="{'valid-form-button': isFormValid()}" class="button1">SIGN UP</button>
+        </div>
+
+    </form>
+</div>

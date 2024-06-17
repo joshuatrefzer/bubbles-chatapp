@@ -1,0 +1,17 @@
+<div id="fullscreen" (click)="mainService.closePopups()"></div>
+
+<div class="popup-content">
+
+    <app-popup *ngIf="mainService.popupMessage"></app-popup>
+
+    <app-create-channel-dialog *ngIf="mainService.addChannelPopup === true"></app-create-channel-dialog>
+
+    <app-profile-dialog *ngIf="mainService.profilePopup === true"></app-profile-dialog>
+
+    <app-add-members-dialog *ngIf="mainService.addMembersPopup === true"></app-add-members-dialog>
+
+    <app-show-members-dialog *ngIf="mainService.showMembersPopup === true"></app-show-members-dialog>
+
+    <app-edit-channel-dialog *ngIf="mainService.editChannelPopup === true"></app-edit-channel-dialog>
+
+</div>

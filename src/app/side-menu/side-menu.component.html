@@ -1,0 +1,35 @@
+<div class="side-menu">
+
+    <div class="card">
+        <div class="section-header">
+            <p>Messages</p>
+            <app-plus class="img-button" (click)="openNewMessage()"></app-plus>
+        </div>
+        @if (channelService.directMessages.length > 0) {
+        <div class="channel-preview-wrapper">
+            @for (channel of this.channelService.directMessages; track $index) {
+            <app-channel-preview (click)="channelService.openChannel(channel.id)"
+                [channel]="channel"></app-channel-preview>
+            }
+        </div>
+        } @else {
+        <p>No messages to display</p>
+        }
+    </div>
+    <div class="card">
+        <div class="section-header">
+            <p>Channels</p>
+            <app-plus class="img-button" (click)="newChannelDialog()"></app-plus>
+        </div>
+        @if (channelService.channels.length > 0) {
+        <div class="channel-preview-wrapper">
+            @for (channel of this.channelService.channels; track $index) {
+            <app-channel-preview (click)="channelService.openChannel(channel.id)"
+                [channel]="channel"></app-channel-preview>
+            }
+        </div>
+        } @else {
+        <p>No channels to display</p>
+        }
+    </div>
+</div>

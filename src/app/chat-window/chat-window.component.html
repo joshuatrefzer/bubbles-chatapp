@@ -1,0 +1,33 @@
+<div class="chat-wrapper">
+    @if (mainService.showNewMessageSearch) {
+    <app-search [searchType]="'user-search'" (selectedUsers)="selectUser($event)"></app-search>
+    <div class="chat-messages-wrapper" id="chat-messages-wrapper">
+        <span class="no-msg-to-display">Choose member to send a message</span>
+    </div>
+    } @else if (channelToDisplay){
+
+    <app-chat-header [currentChat]="channelToDisplay"></app-chat-header>
+
+    <div class="chat-messages-wrapper" #chatWrapper>
+        @if (mainService.chatLoader) {
+        <app-loader></app-loader>
+        } @else if (channelToDisplay){
+        @for (groupedMessages of messageService.groupMsgByAuthor(channelToDisplay.id, false); track $index) {
+        @if (channelService.isSeperator(groupedMessages)) {
+        <div class="seperator">{{channelService.createSeperator(groupedMessages)}}</div>
+        } @else {
+        <app-grouped-messages
+            [groupedMessages]="channelService.checkGroupedMsg(groupedMessages)"></app-grouped-messages>
+        }
+        } @empty {
+        <span class="no-msg-to-display">No messages here</span>
+        }
+        }
+    </div>
+    } @else {
+    <span class="no-msg-to-display">Please select a channel to display messages</span>
+    }
+
+    <app-message-bar (messageContent)="channelService.sendMsg($event, false)"
+        [disabled]="channelToDisplay === undefined"></app-message-bar>
+</div>

@@ -1,0 +1,86 @@
+@import "../library.scss";
+
+.profile-wrapper {
+    @extend .card;
+    width: 350px;
+
+    @media(max-width: 430px) {
+        width: calc(100vw - 30px);
+    }
+}
+
+.picture-wrapper {
+    width: 100%;
+    @include d-flex();
+    padding: 25px;
+
+    .file-picker-wrapper {
+        position: relative;
+        @include d-flex();
+
+        img {
+            @include img-size(150px);
+        }
+
+        app-file-picker {
+            opacity: 0;
+            @include pos-center($pos: absolute);
+            height: 100%;
+            width: 100%;
+        }
+
+        &:hover {
+            app-file-picker {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.details {
+    @include d-flex($fd: column, $g: 25px, $ai: flex-start)
+}
+
+.online-status {
+    @include d-flex($jc: flex-start, $g: 15px)
+}
+
+.online-circle {
+    height: 20px;
+    width: 20px;
+    background-color: $valid-color;
+    border-radius: 50%;
+    margin: 0 3px;
+}
+
+.offline-circle {
+    @extend .online-circle;
+    background-color: $error-color;
+}
+
+.upper {
+    @include d-flex($jc: flex-start, $g: 15px);
+
+    img {
+        @include img-size(25px);
+    }
+}
+
+.e-mail {
+    margin-left: 40px;
+    color: var(--color4);
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.button-wrapper {
+    margin-top: 15px;
+}
+
+.username {
+    @extend .white-space;
+    max-width: 90%;
+}

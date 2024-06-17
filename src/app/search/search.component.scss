@@ -1,0 +1,105 @@
+@import "../library.scss";
+
+.search-wrapper {
+    position: relative;
+
+    .input {
+        width: 100%;
+        height: 40px;
+        padding: 10px;
+        background-color: var(--color2);
+        border: 0;
+        outline: 0;
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+
+        &::placeholder {
+            color: var(--color6);
+        }
+    }
+
+    .dark-input {
+        background-color: var(--color1);
+    }
+}
+@import "../library.scss";
+
+.search-result {
+    @include d-flex($fd: column, $ai: flex-start, $jc: flex-start, $g: 5px);
+    @extend .card;
+    max-height: 70vh;
+    overflow-y: scroll;
+    width: 400px;
+    z-index: 999;
+    position: absolute;
+    top: 55px;
+    border: 1px solid var(--color5);
+
+    @media(max-width: 485px){
+        position: fixed;
+        top: 70px;
+        left: 15px;
+        right: 15px;
+        width: unset;
+    }
+}
+
+.search-result::-webkit-scrollbar{
+    display: none;
+}
+
+.seperator {
+    width: 100%;
+    padding-top: 10px;
+    border-top: 1px solid var(--color6);
+}
+
+.seperator:first-child {
+    padding-top: 0;
+    border: 0;
+}
+
+.preview {
+    @include d-flex($jc: flex-start, $g: 5px);
+    @extend .hover;
+    @extend .card;
+    padding: 5px;
+    border-radius: 20px;
+    width: 100%;
+
+    img {
+        @include img-size(30px);
+    }
+}
+
+.message {
+    align-items: flex-start;
+
+    .details {
+        @include d-flex($fd: column, $g: 5px, $ai: flex-start);
+        width: 100%;
+
+        .author {
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .source {
+            @extend .small-font;
+            color: var(--color6);
+        }
+    }
+}
+
+.selected-user{
+    filter: brightness(.8);
+}
+
+.limit-digits{
+    @extend .white-space;
+    max-width: 85%;
+}
+
+app-attachment{
+    margin-top: 5px;
+}

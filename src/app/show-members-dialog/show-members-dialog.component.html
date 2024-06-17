@@ -1,0 +1,26 @@
+<div class="show-members-wrapper">
+    <div class="header">
+        <p>Members</p>
+        <app-close (click)="mainService.closePopups()" class="img-button"></app-close>
+    </div>
+
+    <div class="display-members">
+        @for (member of currentMembers; track $index) {
+        <div class="member-wrapper">
+            <div class="online-wrapper">
+                <img src="{{member.picture || 'assets/img/profile_placeholder.svg'}}">
+                <div [ngClass]="member.is_online ? 'online' : 'offline'"></div>
+            </div>
+            <p>{{member.username}}</p>
+        </div>
+        }
+    </div>
+
+    <div class="add-members-wrapper">
+        <button class="button1" (click)="openAddMembers()">
+            <!-- <img src="assets/img/add_member_icon.svg"> -->
+            <app-add-member></app-add-member>
+            <p>Add members</p>
+        </button>
+    </div>
+</div>

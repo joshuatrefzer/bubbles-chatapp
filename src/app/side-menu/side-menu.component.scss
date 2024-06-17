@@ -1,0 +1,39 @@
+@import '../library.scss';
+
+.side-menu {
+    max-height: 100%;
+    max-width: 400px;
+    min-width: 400px;
+    @include center-column();
+    gap: 15px;
+    height: fit-content;
+    overflow-y: scroll;
+    @extend .border-radius;
+
+    .card {
+        width: 100%;
+        padding-top: 0px !important;
+
+        .channel-preview-wrapper {
+            @include d-flex($g: 5px, $fd: column, $ai: unset);
+        }
+    }
+
+    @media (max-width: 430px) {
+        min-width: unset;
+        width: calc(100vw - 30px) !important;
+    }
+}
+
+.side-menu::-webkit-scrollbar {
+    display: none;
+}
+
+.section-header {
+    @include d-flex($jc: space-between);
+    padding: $card-padding 0;
+    position: sticky;
+    top: 0;
+    background-color: var(--color2);
+    z-index: 88;
+}

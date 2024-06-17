@@ -1,0 +1,41 @@
+@import '../library.scss';
+
+.grouped-msg-wrapper {
+    @include d-flex($ai: flex-end, $jc: flex-start, $g: 5px);
+
+    .msg-wrapper {
+        width: 100%;
+        @include d-flex($fd: column, $ai: flex-start)
+    }
+}
+
+.my-msg {
+    flex-direction: row-reverse;
+
+    .msg-wrapper {
+        align-items: flex-end;
+    }
+}
+
+.img-wrapper {
+    @include d-flex($fd: column, $g: 2px);
+    min-height: 100%;
+    position: sticky;
+    bottom: 0;
+
+    img {
+        @include img-size(40px);
+    }
+
+    p{
+        margin-bottom: -14px;
+    }
+}
+
+app-message {
+    width: 100%;
+}
+
+p{
+    @extend .small-font;
+}

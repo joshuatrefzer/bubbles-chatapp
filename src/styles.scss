@@ -1,0 +1,48 @@
+@import 'app/library.scss';
+
+@font-face {
+    font-family: 'roboto';
+    src: url('assets/fonts/roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'noto-emoji';
+    src: url('assets/fonts/noto-emoji/NotoColorEmoji-Regular.ttf');
+}
+
+* {
+    font-family: 'Roboto', 'noto-emoji', sans-serif !important;
+    box-sizing: border-box;
+    transition: var(--transition);
+    font-size: 16px;
+    margin: 0;
+    color: var(--color5);
+    scroll-behavior: smooth;
+    transform: translate3d(unset, unset, unset); // hardware accelleration for mobile
+    word-break: break-word;
+}
+
+body {
+    background-color: var(--color1);
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: var(--color1);
+    border-radius: 10px;
+}
+
+app-emoji-picker {
+    @include pos-center();
+    z-index: 99;
+}

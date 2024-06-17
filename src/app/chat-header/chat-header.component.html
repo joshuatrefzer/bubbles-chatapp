@@ -1,0 +1,27 @@
+<div class="header-wrapper">
+    <div class="chat-name-wrapper" (click)="openChannelDetails()">
+        <div class="online-wrapper">
+            <img src="{{getPicture()}}">
+            @if (this.currentChat.is_channel === false) {
+            <div [ngClass]="isOnline() ? 'online' : 'offline'"></div>
+            }
+        </div>        
+        <p>{{getName()}}</p>
+    </div>
+
+    <div class="group-members-wrapper" *ngIf="this.currentChat.is_channel">
+
+        <div class="group-members" *ngIf="!mobile()" (click)="showMemberDialog()">
+            <div class="member-pics">
+                <img src="{{member}}" *ngFor="let member of userImgArray">
+            </div>
+            <div class="member-count" *ngIf="groupMemberCount > 0">
+                +{{groupMemberCount}}
+            </div>
+        </div>
+
+        <div class="add-member" (click)="addMemberDialog()">
+            <app-add-member></app-add-member>
+        </div>
+    </div>
+</div>

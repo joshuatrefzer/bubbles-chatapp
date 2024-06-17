@@ -1,0 +1,40 @@
+@import "../library.scss";
+
+.add-members-wrapper {
+    @extend .card;
+    @include d-flex($ai: flex-start, $fd: column, $g: 15px);
+    width: 400px;
+    height: fit-content;
+
+    .input {
+        width: 100%;
+    }
+
+    @media(max-width: 430px) {
+        width: calc(100vw - 30px);
+    }
+}
+
+.selected-users {
+    @include d-flex($jc: flex-start, $g: 5px);
+    flex-wrap: wrap;
+    max-height: 250px;
+    overflow: auto;
+
+    .selected-user {
+        @include d-flex($g: 5px);
+        background-color: var(--color1);
+        border-radius: 23px;
+        padding: 5px !important;
+
+        img,
+        .img-button {
+            @include img-size($size: 25px);
+            background-color: var(--color1);
+        }
+    }
+}
+
+app-search {
+    width: 100%;
+}

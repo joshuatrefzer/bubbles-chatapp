@@ -1,0 +1,27 @@
+<div class="input-wrapper">
+    <div class="msg-input">
+        <input type="text" [disabled]="disabled" #myInput (keydown.enter)="sendMsg()" [(ngModel)]="inputContent"
+            placeholder="Type a message...">
+        @if (enableFilePicker) {
+        @if(selectedFile){
+        <div class="file-picker-wrapper attachment" (click)="removeAttachment()">
+            <img src="assets/img/attachment_icon_white.svg">
+
+        </div>
+        } @else {
+        <div class="file-picker-wrapper">
+            <input accept=".jpg, .png, .jpeg, .pdf" name="file" type="file" (change)="handleImg($event)">
+            <label>
+                <img class="img-button" src="assets/img/attachment_icon.svg">
+            </label>
+        </div>
+        }
+        }
+        <img class="img-button" (click)="openEmojiPicker()" src="assets/img/smile_icon.svg">
+    </div>
+    <div class="sendbutton" [ngClass]="{'disabled': disabled}" (click)="sendMsg()">
+        <img src="assets/img/send_icon.png">
+    </div>
+</div>
+
+<app-emoji-picker-dialog #picker *ngIf="showEmojiPicker" (newEmoji)="typeEmoji($event)"></app-emoji-picker-dialog>

@@ -1,0 +1,11 @@
+@import '../library.scss';
+
+.wrapper {
+    @include center();
+}
+
+.imprint-wrapper {
+    @extend .card;
+    @include d-flex($fd: column, $g: 15px, $ai: flex-start);
+    animation: slide-in 200ms ease-in-out;
+}

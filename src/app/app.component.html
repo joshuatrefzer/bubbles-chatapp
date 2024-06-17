@@ -1,0 +1,6 @@
+<router-outlet *ngIf="!mainService.loader"></router-outlet>
+
+<app-popup-manager *ngIf="mainService.showPopup"></app-popup-manager>
+<app-loader *ngIf="mainService.loader"></app-loader>
+
+<app-theme-picker style="display: none;"></app-theme-picker>

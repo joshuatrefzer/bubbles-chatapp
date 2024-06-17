@@ -1,0 +1,10 @@
+<div class="wrapper">
+
+    <app-header></app-header>
+
+    <div class="home-wrapper">
+        <app-side-menu [ngClass]="mainService.sideMenuOpen ? 'side-menu-open': 'side-menu-close'"></app-side-menu>
+        <app-chat-window class="main-chat" [channelToDisplay]="channelService.currentChannel" [ngClass]="mainService.threadOpen ? 'hide-main': 'show-main'"></app-chat-window>
+        <app-thread-window class="thread" *ngIf="messageService.currentThread" [threadToDisplay]="messageService.currentThread" [ngClass]="mainService.threadOpen ? 'thread-open': 'thread-close'"></app-thread-window>
+    </div>
+</div>

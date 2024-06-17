@@ -1,0 +1,75 @@
+<div class="search-wrapper" (click)="stopProp($event)">
+    <input (input)="showResults = true" (click)="showResults = true" placeholder="{{ placeholder }}" class="input"
+        [class.dark-input]="searchType === 'user-search'" type="text" (keyup)="triggerSearch()"
+        [(ngModel)]="searchValue">
+
+    <div *ngIf="showResults" class="search-result">
+        <p class="seperator">Users</p>
+        @if (searchType === 'search') {
+        @for (user of searchSolution.users; track $index) {
+        <div class="preview" (click)="showUser(user)">
+            <div class="online-wrapper">
+                <img src="{{channelService.getImg(user.picture)}}">
+                <div [ngClass]="user.is_online ? 'online' : 'offline'"></div>
+            </div>
+            <p class="limit-digits">{{user.username}}</p>
+        </div>
+        }
+
+        <p class="seperator">Channels</p>
+        @for (channel of searchSolution.channels; track $index) {
+        @if (channel.is_channel) {
+        <div class="preview" (click)="openChannel(channel.id)">
+            <img src="{{channelService.getImg(channel.picture)}}">
+            <p class="limit-digits">{{channel.name}}</p>
+        </div>
+        }
+        }
+
+        <p class="seperator">Messages</p>
+        @for (message of searchSolution.messages; track $index) {
+        <div class=" message preview" (click)="openMessage(message)">
+
+            <div class="online-wrapper">
+                <img src="{{channelService.getImg(getInterlocutor(message, false).picture)}}">
+                <div [ngClass]="this.userService.getUser(message.author).is_online ? 'online' : 'offline'"></div>
+            </div>
+
+            <div class="details">
+                <p class="author limit-digits">{{getInterlocutor(message, false).username}}</p>
+                <p><span *ngIf="message.author === currentUserId">You: </span>{{message.content}}</p>
+                <p *ngIf="isChannel(message)" class="source limit-digits">in channel:
+                    {{channelService.getChannel(message.source).name}}</p>
+            </div>
+            <app-attachment *ngIf="message.attachment"></app-attachment>
+        </div>
+        }
+        @for (thread of searchSolution.threads; track $index) {
+        <div class=" message preview" (click)="this.openThread(thread)">
+
+            <div class="online-wrapper">
+                <img src="{{channelService.getImg(getInterlocutor(thread, true).picture)}}">
+                <div [ngClass]="this.userService.getUser(thread.author).is_online ? 'online' : 'offline'"></div>
+            </div>
+
+            <div class="details">
+                <p class="author limit-digits">{{getInterlocutor(thread, true).username}}</p>
+                <p><span *ngIf="thread.author === currentUserId">You: </span>{{thread.content}}</p>
+                <p class="source">in thread</p>
+            </div>
+            <app-attachment *ngIf="thread.attachment"></app-attachment>
+        </div>
+        }
+        } @else {
+        @for (user of searchSolutionUser.users; track $index) {
+        <div class="preview" (click)="selectUser(user, $event)" [class.selected-user]="alreadySelected(user.id)">
+            <div class="online-wrapper">
+                <img src="{{channelService.getImg(user.picture)}}">
+                <div [ngClass]="user.is_online ? 'online' : 'offline'"></div>
+            </div>
+            <p class="limit-digits">{{user.username}}</p>
+        </div>
+        }
+        }
+    </div>
+</div>

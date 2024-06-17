@@ -1,0 +1,57 @@
+@import '../library.scss';
+
+.msg-preview {
+    @include center();
+    @extend .hover;
+    @extend .card;
+    gap: 10px;
+    padding: 10px;
+
+    img {
+        @include img-size($size: 50px);
+        border-radius: 50%;
+    }
+
+    .text-wrapper {
+        @include center-column($ai: flex-start);
+        gap: 10px;
+        width: 100%;
+    }
+
+    .upper-text {
+        @include center($jc: space-between);
+        width: 100%;
+
+        .name {
+            @extend .white-space;
+            max-width: 250px;
+            @media(max-width: 430px){
+                max-width: 140px;
+            }
+        }
+    }
+
+    .msg {
+        @extend .small-font;
+        @extend .white-space;
+        max-width: 260px;
+
+        @media(max-width: 430px){
+            max-width: 180px;
+        }
+    }
+}
+
+.currentChannel {
+    filter: brightness(1.1);
+}
+
+p {
+   opacity: 0.6;
+}
+
+.unread {
+    p{
+       opacity: 1;
+    }
+}

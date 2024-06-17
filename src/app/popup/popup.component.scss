@@ -1,0 +1,42 @@
+@import '../library.scss';
+
+.popup-wrapper {
+    @extend .card;
+    @include d-flex($fd: column, $g: $card-padding);
+    background-color: var(--color2);
+    // border: 2px solid green;
+
+    p {
+        @extend .large-font;
+        //    letter-spacing: px;
+    }
+
+    span {
+        color: var(--color6);
+    }
+
+    .icon-wrapper {
+        padding: 10px;
+        border: 2px solid green;
+        border-radius: 50%;
+        @include d-flex();
+    }
+
+    button {
+        @extend .button;
+        color: var(--color5);
+        background-color: var(--color4);
+    }
+}
+
+.error {
+    border-color: red;
+
+    .icon-wrapper {
+        border-color: red;
+    }
+
+    button {
+        background-color: red;
+    }
+}

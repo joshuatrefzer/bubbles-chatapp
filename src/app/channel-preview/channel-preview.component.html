@@ -1,0 +1,25 @@
+<div class="msg-preview"
+    [ngClass]="{'currentChannel': channelService.currentChannel && channel.id === channelService.currentChannel.id}"
+    [class.unread]="!channel.read_by.includes(authService.currentUser.id)">
+    @if (channel.is_channel === false) {
+    <div class="online-wrapper">
+        <img src="{{  channelService.getImg(userService.getInterlocutor(channel).picture) }}">
+        <div [ngClass]="userService.isOnline(channel) ? 'online': 'offline'"></div>
+    </div>
+    } @else {
+    <img src="{{ channelService.getImg(channel.picture) }}">
+    }
+    <div class="text-wrapper">
+        <div class="upper-text">
+            @if (channel.is_channel === true) {
+            <p class="name">{{channel.name}}</p>
+            } @else {
+            <p class="name">{{userService.getInterlocutor(channel).username}}</p>
+            }
+            @if(getLatestMsg().created_at != 0){
+            <p class="time">{{ getLatestMsg().created_at| date:"HH:mm"}}</p>
+            }
+        </div>
+        <p class="msg">{{getPreview()}}</p>
+    </div>
+</div>

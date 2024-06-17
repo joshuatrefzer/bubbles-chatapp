@@ -1,0 +1,34 @@
+@import '../library.scss';
+// @import '../login/login.component.scss';
+
+.wrapper {
+    @include center();
+    overflow: hidden;
+}
+
+.privacy {
+    @extend .card;
+    animation: slide-in 200ms ease-in-out;
+    max-height: 100%;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.header {
+    padding-bottom: 15px;
+}
+
+.content {
+    @include d-flex($fd: column, $g: 15px, $jc: flex-start, $ai: flex-start);
+    height: calc(100vh - 112px);
+    overflow-y: scroll;
+}
+
+a {
+    color: var(--color4);
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
